@@ -1,0 +1,6 @@
+Flask
+python-dotenv
+Werkzeug
+Pillow
+pytesseract
+PyMuPDF
