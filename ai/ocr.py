@@ -1,41 +1,58 @@
-MESSAGES = {
-
-    "en": {
-
-        "document_ok":
-            "Your document passed the basic checks.",
-
-        "fraud_warning":
-            "Please verify the message before taking action."
-
-    },
+import os
 
 
-    "ta": {
-
-        "document_ok":
-            "உங்கள் ஆவணம் அடிப்படை சரிபார்ப்பில் தேர்ச்சி பெற்றுள்ளது.",
-
-        "fraud_warning":
-            "நடவடிக்கை எடுப்பதற்கு முன் செய்தியை சரிபார்க்கவும்."
-
-    }
-
-}
-
-
-def get_message(
-    key,
-    language="en"
+def extract_text(
+    file_path
 ):
 
-    language_messages = MESSAGES.get(
-        language,
-        MESSAGES["en"]
-    )
+    extension = os.path.splitext(
+        file_path
+    )[1].lower()
 
 
-    return language_messages.get(
-        key,
-        ""
-    )
+    try:
+
+        if extension == ".pdf":
+
+            import fitz
+
+            document = fitz.open(
+                file_path
+            )
+
+
+            text = ""
+
+
+            for page in document:
+
+                text += page.get_text()
+
+
+            document.close()
+
+
+            return text.strip()
+
+
+        from PIL import Image
+
+        import pytesseract
+
+
+        image = Image.open(
+            file_path
+        )
+
+
+        text = pytesseract.image_to_string(
+            image
+        )
+
+
+        return text.strip()
+
+
+    except Exception:
+
+        return ""

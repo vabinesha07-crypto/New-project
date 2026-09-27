@@ -1,41 +1,22 @@
-from urllib.parse import urlparse
+from models.scheme_model import (
+    get_schemes,
+    get_scheme
+)
 
 
-OFFICIAL_DOMAINS = {
-
-    "scholarships.gov.in",
-
-    "pmsvanidhi.mohua.gov.in",
-
-    "pmkisan.gov.in"
-
-}
-
-
-def is_official_link(
-    url
+def search_schemes(
+    query=""
 ):
 
-    try:
-
-        hostname = (
-            urlparse(url)
-            .hostname
-            or ""
-        ).lower()
+    return get_schemes(
+        query
+    )
 
 
-        return (
-            hostname in OFFICIAL_DOMAINS
-            or hostname.endswith(
-                ".gov.in"
-            )
-            or hostname.endswith(
-                ".nic.in"
-            )
-        )
+def scheme_details(
+    scheme_id
+):
 
-
-    except Exception:
-
-        return False
+    return get_scheme(
+        scheme_id
+    )
