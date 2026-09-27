@@ -1,0 +1,152 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{ scheme["name"] }} — BenefitShield
+{% endblock %}
+
+{% block page %}
+
+<main class="content">
+
+    <a
+        href="{{ url_for('schemes.schemes') }}"
+        class="back-link"
+    >
+        ← Back to Schemes
+    </a>
+
+
+    <div class="detail-header">
+
+        <p class="small-heading">
+            SCHEME DETAILS
+        </p>
+
+        <h1>
+            {{ scheme["name"] }}
+        </h1>
+
+
+        {% if scheme["category"] %}
+
+            <span class="tag">
+                {{ scheme["category"] }}
+            </span>
+
+        {% endif %}
+
+    </div>
+
+
+    <div class="detail-grid">
+
+
+        <section class="box">
+
+            <h2>
+                About this scheme
+            </h2>
+
+            <p>
+                {{ scheme["description"] }}
+            </p>
+
+
+            <h2>
+                Eligibility
+            </h2>
+
+            <p>
+                {{ scheme["eligibility"] }}
+            </p>
+
+
+            <h2>
+                Benefits
+            </h2>
+
+            <p>
+                {{ scheme["benefits"] }}
+            </p>
+
+
+            <h2>
+                Documents
+            </h2>
+
+            <p>
+                {{ scheme["documents"] }}
+            </p>
+
+        </section>
+
+
+        <aside class="box">
+
+            <h2>
+                Prepare your application
+            </h2>
+
+            <p>
+                Save this scheme to your applications
+                and prepare the required documents.
+            </p>
+
+
+            {% if current_user %}
+
+                <form
+                    method="POST"
+                    action="{{ url_for(
+                        'applications.create'
+                    ) }}"
+                >
+
+                    <input
+                        type="hidden"
+                        name="scheme_id"
+                        value="{{ scheme['id'] }}"
+                    >
+
+                    <button
+                        type="submit"
+                        class="btn-main"
+                    >
+                        Save to My Applications
+                    </button>
+
+                </form>
+
+            {% else %}
+
+                <a
+                    href="{{ url_for('auth.login') }}"
+                    class="btn-main"
+                >
+                    Login to Save
+                </a>
+
+            {% endif %}
+
+
+            {% if scheme["official_link"] %}
+
+                <a
+                    href="{{ scheme['official_link'] }}"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="official-link"
+                >
+                    Open Official Website →
+                </a>
+
+            {% endif %}
+
+
+        </aside>
+
+    </div>
+
+</main>
+
+{% endblock %}

@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+
+{% block title %}
+My Applications — BenefitShield
+{% endblock %}
+
+{% block page %}
+
+<main class="content">
+
+    <div class="page-heading">
+
+        <p class="small-heading">
+            MY APPLICATIONS
+        </p>
+
+        <h1>
+            My Applications
+        </h1>
+
+        <p class="muted">
+            Review schemes that you have saved for preparation.
+        </p>
+
+    </div>
+
+
+    {% if applications %}
+
+        <div class="application-list">
+
+            {% for application in applications %}
+
+                <article class="application-card">
+
+                    <div>
+
+                        <p class="small-heading">
+                            {{ application["scheme_category"] or "SCHEME" }}
+                        </p>
+
+                        <h2>
+                            {{ application["scheme_name"] }}
+                        </h2>
+
+                        <p class="muted">
+                            Added on
+                            {{ application["created_at"] }}
+                        </p>
+
+                    </div>
+
+
+                    <div class="application-progress">
+
+                        <span>
+                            {{ application["status"] }}
+                        </span>
+
+
+                        <div class="progress-bar">
+
+                            <div
+                                class="progress-value"
+                                style="width: {{ application['progress'] or 0 }}%;"
+                            ></div>
+
+                        </div>
+
+
+                        <small>
+                            {{ application["progress"] or 0 }}% prepared
+                        </small>
+
+                    </div>
+
+                </article>
+
+            {% endfor %}
+
+        </div>
+
+    {% else %}
+
+        <div class="empty-state">
+
+            <h2>
+                No saved applications
+            </h2>
+
+            <p>
+                Find a scheme and save it here when you are ready
+                to prepare your application.
+            </p>
+
+            <a
+                href="{{ url_for('schemes.schemes') }}"
+                class="btn-main"
+            >
+                Find a Scheme
+            </a>
+
+        </div>
+
+    {% endif %}
+
+</main>
+
+{% endblock %}

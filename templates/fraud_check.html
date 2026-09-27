@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+
+{% block title %}
+Fraud Check — BenefitShield
+{% endblock %}
+
+{% block page %}
+
+<main class="content">
+
+    <div class="page-heading">
+
+        <p class="small-heading">
+            SAFETY CHECK
+        </p>
+
+        <h1>
+            Fraud Check
+        </h1>
+
+        <p class="muted">
+            Paste a message you received to check for common
+            payment, OTP, PIN and approval warning signs.
+        </p>
+
+    </div>
+
+
+    <div class="box">
+
+        <form id="fraudForm">
+
+            <div class="form-group">
+
+                <label for="message">
+                    Message
+                </label>
+
+                <textarea
+                    id="message"
+                    name="message"
+                    rows="8"
+                    placeholder="Paste the message here..."
+                    required
+                ></textarea>
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="btn-main"
+            >
+                Check Message
+            </button>
+
+        </form>
+
+
+        <div
+            id="fraudResult"
+            class="result-box"
+            hidden
+        >
+
+            <h2 id="riskLevel">
+            </h2>
+
+            <h3>
+                Warning Signs
+            </h3>
+
+            <ul id="riskReasons">
+            </ul>
+
+            <h3>
+                What to do
+            </h3>
+
+            <p id="recommendation">
+            </p>
+
+        </div>
+
+    </div>
+
+</main>
+
+{% endblock %}
+
+
+{% block scripts %}
+
+<script
+    src="{{ url_for(
+        'static',
+        filename='js/fraud.js'
+    ) }}"
+></script>
+
+{% endblock %}

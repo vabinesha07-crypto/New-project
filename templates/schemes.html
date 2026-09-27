@@ -1,0 +1,141 @@
+{% extends "base.html" %}
+
+{% block title %}
+Find a Scheme — BenefitShield
+{% endblock %}
+
+{% block page %}
+
+<main class="content">
+
+    <div class="page-heading">
+
+        <p class="small-heading">
+            SCHEMES
+        </p>
+
+        <h1>
+            Find a Scheme
+        </h1>
+
+        <p class="muted">
+            Search schemes and review their basic requirements.
+        </p>
+
+    </div>
+
+
+    <form
+        class="search-form"
+        method="GET"
+        action="{{ url_for('schemes.schemes') }}"
+    >
+
+        <input
+            type="search"
+            name="q"
+            value="{{ query }}"
+            placeholder="Search by scheme name or category..."
+        >
+
+        <button
+            type="submit"
+            class="btn-main"
+        >
+            Search
+        </button>
+
+    </form>
+
+
+    {% if schemes %}
+
+        <div class="scheme-grid">
+
+            {% for scheme in schemes %}
+
+                <article class="scheme-card">
+
+                    <p class="scheme-number">
+                        {{ "%02d"|format(loop.index) }}
+                    </p>
+
+                    <h2>
+                        {{ scheme["name"] }}
+                    </h2>
+
+
+                    {% if scheme["category"] %}
+
+                        <span class="tag">
+                            {{ scheme["category"] }}
+                        </span>
+
+                    {% endif %}
+
+
+                    <p>
+                        {{ scheme["description"] }}
+                    </p>
+
+
+                    <div class="scheme-info">
+
+                        <strong>
+                            Eligibility
+                        </strong>
+
+                        <p>
+                            {{ scheme["eligibility"] }}
+                        </p>
+
+                    </div>
+
+
+                    <a
+                        href="{{ url_for(
+                            'schemes.scheme_detail',
+                            scheme_id=scheme['id']
+                        ) }}"
+                        class="btn-secondary"
+                    >
+                        View Details
+                    </a>
+
+                </article>
+
+            {% endfor %}
+
+        </div>
+
+    {% else %}
+
+        <div class="empty-state">
+
+            <h2>
+                No schemes found
+            </h2>
+
+            <p>
+                Try another search term.
+            </p>
+
+        </div>
+
+    {% endif %}
+
+</main>
+
+{% endblock %}
+
+
+{% block scripts %}
+
+<script
+    src="{{ url_for(
+        'static',
+        filename='js/schemes.js'
+    ) }}"
+></script>
+
+{% endblock %}

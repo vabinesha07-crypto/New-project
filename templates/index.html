@@ -1,0 +1,207 @@
+{% extends "base.html" %}
+
+{% block title %}
+BenefitShield — Government Scheme Assistance
+{% endblock %}
+
+{% block page %}
+
+<main class="home-page">
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <p class="small-heading">
+                BENEFITSHIELD
+            </p>
+
+            <h1>
+                Prepare with confidence
+                before applying for benefits.
+            </h1>
+
+            <p class="hero-text">
+                BenefitShield helps you find relevant schemes,
+                organize documents, check basic document quality,
+                and identify common warning signs in suspicious
+                messages.
+            </p>
+
+
+            <div class="hero-actions">
+
+                {% if current_user %}
+
+                    <a
+                        href="{{ url_for('dashboard') }}"
+                        class="btn-main"
+                    >
+                        Go to Dashboard
+                    </a>
+
+                {% else %}
+
+                    <a
+                        href="{{ url_for('auth.login') }}"
+                        class="btn-main"
+                    >
+                        Login
+                    </a>
+
+                    <a
+                        href="{{ url_for('schemes.schemes') }}"
+                        class="btn-secondary"
+                    >
+                        Explore Schemes
+                    </a>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+
+        <div class="hero-card">
+
+            <p class="small-heading">
+                BEFORE YOU APPLY
+            </p>
+
+            <h2>
+                Simple preparation tools
+            </h2>
+
+            <ul>
+
+                <li>
+                    Find government schemes
+                </li>
+
+                <li>
+                    Check your documents
+                </li>
+
+                <li>
+                    Review suspicious messages
+                </li>
+
+                <li>
+                    Track saved applications
+                </li>
+
+            </ul>
+
+        </div>
+
+    </section>
+
+
+    <section class="home-section">
+
+        <p class="small-heading">
+            HOW IT HELPS
+        </p>
+
+        <h2>
+            Everything in one place
+        </h2>
+
+
+        <div class="feature-grid">
+
+            <div class="feature-card">
+
+                <span>
+                    01
+                </span>
+
+                <h3>
+                    Find a Scheme
+                </h3>
+
+                <p>
+                    Search available schemes and review
+                    their basic eligibility and document
+                    requirements.
+                </p>
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <span>
+                    02
+                </span>
+
+                <h3>
+                    Check Documents
+                </h3>
+
+                <p>
+                    Upload a document and perform basic
+                    readability and profile-name checks.
+                </p>
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <span>
+                    03
+                </span>
+
+                <h3>
+                    Fraud Check
+                </h3>
+
+                <p>
+                    Review suspicious messages for common
+                    payment, OTP and PIN warning signs.
+                </p>
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <span>
+                    04
+                </span>
+
+                <h3>
+                    My Applications
+                </h3>
+
+                <p>
+                    Keep track of schemes that you have
+                    saved for further preparation.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section class="safety-section">
+
+        <h2>
+            Stay safe while applying
+        </h2>
+
+        <p>
+            Never share OTPs, PINs or confidential authentication
+            codes with another person. Always verify final scheme
+            information on the official government website.
+        </p>
+
+    </section>
+
+</main>
+
+{% endblock %}

@@ -1,0 +1,151 @@
+{% extends "base.html" %}
+
+{% block title %}
+Check Documents — BenefitShield
+{% endblock %}
+
+{% block page %}
+
+<main class="content">
+
+    <div class="page-heading">
+
+        <p class="small-heading">
+            DOCUMENT CHECK
+        </p>
+
+        <h1>
+            Check a Document
+        </h1>
+
+        <p class="muted">
+            Upload a document to check whether it is readable
+            and whether your profile name appears in it.
+        </p>
+
+    </div>
+
+
+    <div class="box document-upload-box">
+
+
+        <form
+            id="documentForm"
+            enctype="multipart/form-data"
+        >
+
+
+            <div class="form-group">
+
+                <label for="document_type">
+                    Document Type
+                </label>
+
+
+                <select
+                    id="document_type"
+                    name="document_type"
+                    required
+                >
+
+                    <option value="">
+                        Select document type
+                    </option>
+
+                    <option value="Community Certificate">
+                        Community Certificate
+                    </option>
+
+                    <option value="Income Certificate">
+                        Income Certificate
+                    </option>
+
+                    <option value="Photo">
+                        Photo
+                    </option>
+
+                    <option value="10th Marksheet">
+                        10th Marksheet
+                    </option>
+
+                    <option value="12th Marksheet">
+                        12th Marksheet
+                    </option>
+
+                    <option value="Bonafide Certificate">
+                        Bonafide Certificate
+                    </option>
+
+                    <option value="Other Files">
+                        Other Files
+                    </option>
+
+                </select>
+
+            </div>
+
+
+
+            <div class="form-group">
+
+                <label for="document">
+                    Choose File
+                </label>
+
+
+                <input
+                    id="document"
+                    name="document"
+                    type="file"
+                    accept=".pdf,.png,.jpg,.jpeg,.webp"
+                    required
+                >
+
+            </div>
+
+
+
+            <button
+                type="submit"
+                class="btn-main"
+            >
+                Check Document
+            </button>
+
+        </form>
+
+
+        <div
+            id="documentResult"
+            class="result-box"
+            hidden
+        >
+
+            <h2 id="resultStatus">
+            </h2>
+
+            <p id="resultSummary">
+            </p>
+
+            <div id="resultChecks">
+            </div>
+
+        </div>
+
+    </div>
+
+</main>
+
+{% endblock %}
+
+
+{% block scripts %}
+
+<script
+    src="{{ url_for(
+        'static',
+        filename='js/document.js'
+    ) }}"
+></script>
+
+{% endblock %}

@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+Login — BenefitShield
+{% endblock %}
+
+
+{% block page %}
+
+<div class="content narrow">
+
+    <p class="small-heading">
+        ACCOUNT LOGIN
+    </p>
+
+
+    <h1>
+        Login to BenefitShield
+    </h1>
+
+
+    <p class="muted">
+        Use your registered email and password to continue.
+    </p>
+
+
+    <div class="box">
+
+
+        <form
+            method="POST"
+            action="{{ url_for('auth.login') }}"
+        >
+
+
+            <label for="email">
+                Email
+            </label>
+
+
+            <input
+                id="email"
+                name="email"
+                type="email"
+                autocomplete="email"
+                placeholder="you@example.com"
+                required
+            >
+
+
+
+            <label for="password">
+                Password
+            </label>
+
+
+            <input
+                id="password"
+                name="password"
+                type="password"
+                autocomplete="current-password"
+                placeholder="Enter your password"
+                required
+            >
+
+
+
+            <button
+                class="btn-main"
+                type="submit"
+            >
+                Login
+            </button>
+
+        </form>
+
+
+        <div class="login-note">
+
+            <p>
+                Demo account
+            </p>
+
+            <strong>
+                user@benefitshield.com
+            </strong>
+
+            <br>
+
+            <strong>
+                Benefit@123
+            </strong>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,290 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+Dashboard — BenefitShield
+{% endblock %}
+
+
+{% block page %}
+
+<div class="app-shell">
+
+
+    <aside class="sidebar">
+
+        <small>
+            MY ACCOUNT
+        </small>
+
+
+        <a
+            class="active"
+            href="{{ url_for('dashboard') }}"
+        >
+            Dashboard
+        </a>
+
+
+        <a
+            href="{{ url_for('schemes.schemes') }}"
+        >
+            Find a Scheme
+        </a>
+
+
+        <a
+            href="{{ url_for('documents.document_check') }}"
+        >
+            Check Documents
+        </a>
+
+
+        <a
+            href="{{ url_for('fraud.fraud_check') }}"
+        >
+            Fraud Check
+        </a>
+
+
+        <a
+            href="{{ url_for('applications.applications') }}"
+        >
+            My Applications
+        </a>
+
+
+        <a
+            href="{{ url_for('auth.profile') }}"
+        >
+            My Profile
+        </a>
+
+
+        <a
+            href="{{ url_for('help_page') }}"
+        >
+            Help
+        </a>
+
+    </aside>
+
+
+
+    <main class="dashboard-main">
+
+
+        <div class="welcome">
+
+
+            <div>
+
+                <p class="small-heading">
+                    DASHBOARD
+                </p>
+
+
+                <h1>
+                    Good morning,
+                    {{ current_user["name"] }}
+                </h1>
+
+
+                <p>
+                    Choose a task and continue preparing
+                    your application.
+                </p>
+
+            </div>
+
+
+
+            <div class="initial">
+
+                {{
+                    (
+                        current_user["name"]
+                        or "U"
+                    )[0]|upper
+                }}
+
+            </div>
+
+        </div>
+
+
+
+        <h2>
+            What do you need help with?
+        </h2>
+
+
+        <p class="muted">
+            Four simple tools to help you prepare before applying.
+        </p>
+
+
+
+        <div class="service-grid">
+
+
+            <a
+                href="{{ url_for('schemes.schemes') }}"
+                class="service-card"
+            >
+
+                <b>
+                    01
+                </b>
+
+                <h3>
+                    Find a Scheme
+                </h3>
+
+                <p>
+                    Search schemes, review basic requirements
+                    and open the official website.
+                </p>
+
+                <span>
+                    Open →
+                </span>
+
+            </a>
+
+
+
+            <a
+                href="{{ url_for('documents.document_check') }}"
+                class="service-card"
+            >
+
+                <b>
+                    02
+                </b>
+
+                <h3>
+                    Check Documents
+                </h3>
+
+                <p>
+                    Check whether a document is readable
+                    and whether the profile name appears.
+                </p>
+
+                <span>
+                    Open →
+                </span>
+
+            </a>
+
+
+
+            <a
+                href="{{ url_for('fraud.fraud_check') }}"
+                class="service-card"
+            >
+
+                <b>
+                    03
+                </b>
+
+                <h3>
+                    Fraud Check
+                </h3>
+
+                <p>
+                    Review suspicious messages for payment,
+                    OTP and approval warning signs.
+                </p>
+
+                <span>
+                    Open →
+                </span>
+
+            </a>
+
+
+
+            <a
+                href="{{ url_for('applications.applications') }}"
+                class="service-card"
+            >
+
+                <b>
+                    04
+                </b>
+
+                <h3>
+                    My Applications
+                </h3>
+
+                <p>
+                    See your saved schemes and
+                    current preparation progress.
+                </p>
+
+                <span>
+                    Open →
+                </span>
+
+            </a>
+
+        </div>
+
+
+
+        <div class="recent">
+
+            <h2>
+                Quick safety reminder
+            </h2>
+
+            <p class="muted">
+                BenefitShield is an assistance tool.
+                Always confirm final requirements on the official
+                scheme website.
+            </p>
+
+
+            <div class="application-row">
+
+                <div>
+
+                    <b>
+                        Never share OTPs or PINs
+                    </b>
+
+                    <p>
+                        Do not reveal confidential authentication
+                        codes to another person.
+                    </p>
+
+                </div>
+
+
+                <span class="status">
+                    Stay safe
+                </span>
+
+            </div>
+
+        </div>
+
+    </main>
+
+</div>
+
+{% endblock %}
+
+
+{% block scripts %}
+
+<script
+    src="{{ url_for(
+        'static',
+        filename='js/dashboard.js'
+    ) }}"
+></script>
+
+{% endblock %}
