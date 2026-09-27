@@ -1,22 +1,35 @@
-from models.scheme_model import (
-    get_schemes,
-    get_scheme
+from functools import wraps
+
+from flask import (
+    session,
+    redirect,
+    url_for,
+    flash
 )
 
 
-def search_schemes(
-    query=""
-):
+def login_required(view_function):
 
-    return get_schemes(
-        query
-    )
+    @wraps(view_function)
+    def wrapped_view(*args, **kwargs):
 
+        if not session.get("user_id"):
 
-def scheme_details(
-    scheme_id
-):
+            flash(
+                "Please login to continue.",
+                "error"
+            )
 
-    return get_scheme(
-        scheme_id
-    )
+            return redirect(
+                url_for(
+                    "auth.login",
+                    next="/dashboard"
+                )
+            )
+
+        return view_function(
+            *args,
+            **kwargs
+        )
+
+    return wrapped_view
